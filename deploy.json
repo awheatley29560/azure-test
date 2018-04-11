@@ -28,7 +28,7 @@
   "variables": {
     "storageAccountType": "Standard_LRS",
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'azfunctions')]",
-    "repoUrl":"https://github.com/awheatley29560/azure-test/functions.git",
+    "repoUrl":"https://github.com/awheatley29560/azure-test.git",
     "branch":"master"
   },
   "resources": [
@@ -91,22 +91,7 @@
           "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
       ],
       "location": "[resourceGroup().location]",
-      "kind": "functionapp",
-       "resources": [
-          {
-            "apiVersion": "2015-08-01",
-            "name": "web",
-            "type": "sourcecontrols",
-            "dependsOn": [
-              "[resourceId('Microsoft.Web/Sites', parameters('functionAppName'))]"
-            ],
-            "properties": {
-              "RepoUrl": "[variables('repoURL')]",
-              "branch": "[variables('branch')]",
-              "IsManualIntegration": true
-            }
-          }
-        ]
+      "kind": "functionapp"
     }
   ],
   "outputs": {}
